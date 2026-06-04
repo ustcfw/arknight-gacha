@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>公开寻访终端 | 抽卡模拟器</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-panel">
+        <div class="topline">
+          <span class="brand-mark">ARK//SIM</span>
+          <span class="system-state">TERMINAL ONLINE</span>
+        </div>
+
+        <div class="hero-grid">
+          <div class="banner-copy">
+            <p class="eyebrow">HEADHUNTING // LIMITED ROUTE</p>
+            <h1>公开寻访终端</h1>
+            <p class="lead">
+              非官方粉丝向抽卡模拟器。参考工业终端、招募档案、拉开包袋后的光效反馈，
+              使用原创 UI 与占位角色资料实现类似节奏。
+            </p>
+
+            <div class="rate-strip" aria-label="概率说明">
+              <div>
+                <strong>2%</strong>
+                <span>六星基础概率</span>
+              </div>
+              <div>
+                <strong>8%</strong>
+                <span>五星概率</span>
+              </div>
+              <div>
+                <strong>50+</strong>
+                <span>六星软保底起点</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="featured-card" aria-label="当前卡池">
+            <div class="featured-header">
+              <span>ACTIVE BANNER</span>
+              <strong>断层回声</strong>
+            </div>
+            <div class="operator-stack" id="featuredOperators"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="control-deck">
+        <div class="currency-card">
+          <span class="label">合成玉</span>
+          <strong id="currency">60000</strong>
+          <button class="ghost-button" id="resetButton" type="button">重置记录</button>
+        </div>
+
+        <div class="pity-card">
+          <div class="pity-line">
+            <span>距上次六星</span>
+            <strong id="sinceSix">0</strong>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="pityFill"></div>
+          </div>
+          <span class="hint" id="pityHint">50 抽后每抽六星概率 +2%</span>
+        </div>
+
+        <div class="action-card">
+          <button class="pull-button single" id="singlePull" type="button">
+            <span>寻访一次</span>
+            <small>消耗 600</small>
+          </button>
+          <button class="pull-button ten" id="tenPull" type="button">
+            <span>十连寻访</span>
+            <small>消耗 6000</small>
+          </button>
+        </div>
+      </section>
+
+      <section class="results-panel" aria-live="polite">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">RESULT ARCHIVE</p>
+            <h2>本次寻访结果</h2>
+          </div>
+          <button class="ghost-button" id="skipReveal" type="button" disabled>跳过动画</button>
+        </div>
+
+        <div class="bag-stage" id="bagStage" aria-hidden="true">
+          <div class="bag-light"></div>
+          <div class="bag">
+            <div class="bag-seal"></div>
+            <div class="bag-tag">HR DOCUMENT</div>
+            <div class="bag-zip" id="bagZip"></div>
+          </div>
+          <p id="bagPrompt">拉开档案袋封条...</p>
+        </div>
+
+        <div class="result-grid" id="resultGrid"></div>
+      </section>
+
+      <section class="archive-grid">
+        <article class="stat-panel">
+          <p class="eyebrow">STATISTICS</p>
+          <div class="stat-row">
+            <span>总抽数</span>
+            <strong id="totalPulls">0</strong>
+          </div>
+          <div class="stat-row">
+            <span>六星数量</span>
+            <strong id="sixCount">0</strong>
+          </div>
+          <div class="stat-row">
+            <span>五星数量</span>
+            <strong id="fiveCount">0</strong>
+          </div>
+        </article>
+
+        <article class="history-panel">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">LOG</p>
+              <h2>最近记录</h2>
+            </div>
+          </div>
+          <ol id="historyList" class="history-list"></ol>
+        </article>
+      </section>
+    </main>
+
+    <template id="operatorTemplate">
+      <article class="operator-card">
+        <div class="rarity"></div>
+        <div class="class-icon"></div>
+        <h3></h3>
+        <p></p>
+        <span class="code"></span>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
